@@ -180,7 +180,9 @@ BODY progn"
 
 (defun flow-stop-flow-server ()
   "Stop flow hook."
-  (if flow-stop-server-on-exit (flow-cmd-ignore-output "stop")))
+  (if flow-stop-server-on-exit
+      (ignore-errors
+        (flow-cmd-ignore-output "stop"))))
 
 (add-hook 'kill-emacs-hook 'flow-stop-flow-server t)
 
